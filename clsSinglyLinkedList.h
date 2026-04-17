@@ -232,6 +232,43 @@ private:
         return true;
     }
 
+    // Reverse the list nodes.
+    bool _Reverse() {
+
+        // check if the list is empty.
+        if (_Head == nullptr) {
+            return false;
+        }
+
+        // check if the list has 1 element only.
+        if (_Head->_Next == nullptr) {
+            return false;
+        }
+
+        _Node* tempNode1 = _Head->_Next;
+        _Head->_Next = nullptr;
+        
+        if (tempNode1->_Next == nullptr) {
+            tempNode1->_Next = _Head;
+            _Head = tempNode1;
+            return true;
+        }
+
+        _Node* tempNode2 = tempNode1->_Next;
+        tempNode1->_Next = _Head;
+
+        _Node* tempNode3 = tempNode2->_Next;
+        while (tempNode3 != nullptr) {
+            tempNode2->_Next = tempNode1;
+            tempNode1 = tempNode2;
+            tempNode2 = tempNode3;
+            tempNode3 = tempNode3->_Next;
+        }
+        tempNode2->_Next = tempNode1;
+        _Head = tempNode2;
+        return true;
+    }
+
     // delete the full list.
     void _DeleteFullList() {
 
@@ -340,6 +377,10 @@ private:
 
     bool deleteNode(T deleteVal) {
         return _DeleteNode(deleteVal);
+    }
+
+    bool reverse() {
+        return _Reverse();
     }
 
     void clear() {
