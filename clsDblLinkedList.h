@@ -149,27 +149,14 @@ private:
             return false;
         }
 
-        _Node* CurrentNode = nullptr;
-        int i = 0;
-
-        if (_Size - index < index) {
-            CurrentNode = _Tail;
-            i = _Size - 1;
-        }
-        else {
-            CurrentNode = _Head;
+        _Node* CurrentNode = _Head;
+        for (int currentNodeIndex = 0; currentNodeIndex != index; currentNodeIndex++) {
+            if (currentNodeIndex == _Size - 1) {
+                return false;
+            }
+            CurrentNode = CurrentNode->_Next;
         }
 
-        while (i != index) {
-            if (i < index) {
-                CurrentNode = CurrentNode->_Next;
-                i++;
-            }
-            else {
-                CurrentNode = CurrentNode->_Previous;
-                i--;
-            }
-        }
         _Node* newNode = new _Node;
         newNode->_Value = newVal;
         newNode->_Next = CurrentNode->_Next;
