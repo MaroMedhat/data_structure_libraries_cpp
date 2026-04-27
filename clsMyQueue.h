@@ -32,15 +32,15 @@ public:
     }
 
     T getItem(int index) {
-        _MyQueue.getNodeValue(index);
+        return _MyQueue.getNodeValue(index);
     }
 
     bool reverse() {
         return _MyQueue.reverse();
     }
 
-    bool updateItem(int index ,T item) {
-        return _MyQueue.updateNodeValue(index, item);
+    bool updateItem(T val ,T item) {
+        return _MyQueue.updateNodeValue(val, item);
     }
 
     bool insertAfter(int index, T item) {
